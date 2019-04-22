@@ -88,10 +88,9 @@ SS.COMMX.header = function () {
             $(this).attr('aria-selected', 'true');
 
             if (isVisibleEl.length === 0) {
-                console.log('first gnb');
-                $(this).closest('li').removeClass('on');
+                // $(this).closest('li').removeClass('on');
                 $(this).next('.level2').fadeIn(500, function(){
-                    $('.level2').removeAttr('style');
+                    $(this).removeAttr('style');
                 });
             }
         });
