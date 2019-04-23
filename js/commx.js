@@ -74,9 +74,25 @@ SS.COMMX.header = function () {
     method.gnb = function () {
         var $gnb = $('.gnb');
         var $gnblLevel = $gnb.find('.level1');
-        var $gnbLevelBtn = $gnblLevel.find('>a');
+        var $gnbLevelBtn = $gnblLevel.find('.child');
+        var $gnbBg = $gnb.find('.bg');
+        var $gnbBgKeyword = $gnbBg.find('.keyword');
 
-        $gnbLevelBtn.on('mouseenter focus', function () {
+        $gnbLevelBtn.on('mouseenter focus', function (e) {
+            var $gnbEl;
+
+            if (e.currentTarget === undefined) {
+                $gnbEl = e;
+            } else {
+                $gnbEl = $(e.currentTarget);
+            }
+
+            var $gnblLevel2 = $gnbEl.closest('li').find('.level2');
+
+            var $level2Height = $(this).next('.level2').innerHeight();
+            var $gnbBgKeywordHeight = $gnbBgKeyword.height();
+
+            console.log($level2Height , $gnbBgKeywordHeight);
 
             var isVisibleEl = $gnbLevelBtn.filter(function () {
                 return ($(this).attr('aria-selected') === 'true');
@@ -88,11 +104,13 @@ SS.COMMX.header = function () {
             $(this).attr('aria-selected', 'true');
 
             if (isVisibleEl.length === 0) {
-                // $(this).closest('li').removeClass('on');
-                $(this).next('.level2').fadeIn(500, function(){
+                $gnblLevel2.hide();
+                $(this).next('.level2').stop().slideDown(400, function () {
                     $(this).removeAttr('style');
                 });
             }
+            TweenMax.to($gnbBg, 0.2, { height: $level2Height + $gnbBgKeywordHeight, display: 'block' });
+            TweenMax.to($gnbBgKeyword, 0.3, {autoAlpha: 1});            
         });
 
         $gnb.on('mouseleave', function () {
@@ -103,6 +121,14 @@ SS.COMMX.header = function () {
                     $('.level2').removeAttr('style');
                 });
             };
+            TweenMax.to($gnbBg, 0.3, {
+                height: 0, display: 'none', onComplete: function () {
+                    $gnbBg.removeAttr('style');
+                }
+            });
+            TweenMax.to($gnbBgKeyword, 0.1, {autoAlpha: 0, onComplete:function () {
+                $gnbBgKeyword.removeAttr('style');
+            }});
         });
 
     };

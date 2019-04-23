@@ -134,7 +134,7 @@ Header */
 #gnb .menu .level1{margin-left:2rem;}
 #gnb .menu .level1:first-child{margin-left:0;}
 #gnb .menu .level1>a{display:block;line-height:1;padding-bottom:55px;font-size:2rem;color:#000;font-weight:500;}
-#gnb .menu .level2{display:none;position:absolute;top:100%;left:0;width:100%;padding:60px 0;background-color:white;}
+#gnb .menu .level2{display:none;position:absolute;top:100%;left:0;z-index:20;width:100%;padding:60px 0;background-color:white;}
 #gnb .menu .level2 .viewport{max-width:1200px;margin:0 auto;}
 #gnb .menu .level2 .menu{float:left;width:860px;}
 #gnb .menu .level2 .menu ul{font-size:0;}
@@ -149,6 +149,11 @@ Header */
 #gnb .menu .level2 .side .link a{display:inline-block;width:50%;line-height:22px;font-size:20px;color:#333;text-decoration:none;}
 #gnb .menu .level2 .side .link a:after{display:inline-block;width:5px;height:10px;margin:5px 0 0 5px;background:red;vertical-align:top;content:'';}
 #gnb .menu .on .level2{display:block;}
+#gnb .bg{overflow:hidden;position:absolute;left:0;top:149px;z-index:10;width:100%;border-top:1px solid #eee;background:#fff;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+#gnb .bg .keyword{position:absolute;bottom:0;left:0;width:100%;background:#283541;}
+#gnb .bg .keyword .inwrap{max-width:1200px;margin:0 auto;padding:20px 0;}
 
 
 /* Layout 
